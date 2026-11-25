@@ -1,6 +1,6 @@
-# Peace Staff — Studio Workspace Portal
+# Office Management Tool — Staff Workspace Portal
 
-A free, self-hosted **internal staff workspace** for a production house or small
+A free, self-hosted **office management tool** for a production house or small
 studio: Google sign-in, role-based access, task board, personal schedule, leave
 requests, announcements, anonymous suggestions, daily reports (with PDF export),
 a live studio wall, a mascot, and gamification (XP, levels, badges, leaderboard).
@@ -42,8 +42,8 @@ Auth + Realtime). No backend server of your own to run. Deploy free on Vercel.
 ## Quick start (local)
 
 ```bash
-git clone https://github.com/<you>/peace-staff.git
-cd peace-staff
+git clone https://github.com/<you>/office-management-tool.git
+cd office-management-tool
 npm install
 cp .env.example .env   # then fill in your Supabase values (see below)
 npm run dev
