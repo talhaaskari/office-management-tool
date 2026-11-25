@@ -1,0 +1,452 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Theme engine: accent palettes via CSS variables ---------- */
+:root {
+  --accent-50: #eff6ff;
+  --accent-100: #dbeafe;
+  --accent-400: #60a5fa;
+  --accent-500: #3b82f6;
+  --accent-600: #2563eb;
+  --accent-700: #1d4ed8;
+  --accent-gradient: linear-gradient(135deg, #3b82f6, #6366f1);
+  --glow-1: rgba(59, 130, 246, 0.22);
+  --glow-2: rgba(99, 102, 241, 0.16);
+}
+[data-accent="indigo"] {
+  --accent-50: #eef2ff;
+  --accent-100: #e0e7ff;
+  --accent-400: #818cf8;
+  --accent-500: #6366f1;
+  --accent-600: #4f46e5;
+  --accent-700: #4338ca;
+  --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --glow-1: rgba(99, 102, 241, 0.22);
+  --glow-2: rgba(139, 92, 246, 0.16);
+}
+[data-accent="emerald"] {
+  --accent-50: #ecfdf5;
+  --accent-100: #d1fae5;
+  --accent-400: #34d399;
+  --accent-500: #10b981;
+  --accent-600: #059669;
+  --accent-700: #047857;
+  --accent-gradient: linear-gradient(135deg, #10b981, #0d9488);
+  --glow-1: rgba(16, 185, 129, 0.20);
+  --glow-2: rgba(13, 148, 136, 0.15);
+}
+[data-accent="rose"] {
+  --accent-50: #fff1f2;
+  --accent-100: #ffe4e6;
+  --accent-400: #fb7185;
+  --accent-500: #f43f5e;
+  --accent-600: #e11d48;
+  --accent-700: #be123c;
+  --accent-gradient: linear-gradient(135deg, #f43f5e, #d946ef);
+  --glow-1: rgba(244, 63, 94, 0.20);
+  --glow-2: rgba(217, 70, 239, 0.15);
+}
+
+/* ---------- Base ---------- */
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Glass helpers ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.light .glass {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+}
+.accent-gradient-bg {
+  background: var(--accent-gradient);
+}
+.accent-text {
+  color: var(--accent-500);
+}
+.accent-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-100);
+  border-color: var(--accent-500);
+}
+
+/* thin scrollbars */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 8px; }
+
+/* range slider */
+input[type="range"].progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.25);
+  outline: none;
+}
+input[type="range"].progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--accent-500);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.35);
+}
+input[type="range"].progress-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--accent-500);
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+/* ---------- Native dropdown options: fix white-on-white in dark mode ---------- */
+select {
+  color-scheme: dark;
+}
+html.light select {
+  color-scheme: light;
+}
+select option {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+html.light select option {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+/* date picker indicator visible in dark mode */
+input[type="date"] {
+  color-scheme: dark;
+}
+html.light input[type="date"] {
+  color-scheme: light;
+}
+
+/* ---------- Film / studio motion system (Peace Production) ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scene-in {
+  from { opacity: 0; transform: rotateX(-16deg) translateY(24px) scale(.985); transform-origin: top center; }
+  to { opacity: 1; transform: rotateX(0) translateY(0) scale(1); transform-origin: top center; }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes lower-third-in {
+  from { opacity: 0; transform: translateY(26px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes reel-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes rec-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, .45); }
+  50% { opacity: .6; box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+@keyframes drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(48px, 28px) scale(1.08); }
+}
+@keyframes drift-b {
+  from { transform: translate(0, 0) scale(1.05); }
+  to { transform: translate(-56px, -32px) scale(.96); }
+}
+@keyframes sweep-beam {
+  0% { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+  8% { opacity: 1; }
+  45% { transform: translateX(260%) skewX(-18deg); opacity: 1; }
+  55%, 100% { transform: translateX(260%) skewX(-18deg); opacity: 0; }
+}
+@keyframes toast-bar {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+@keyframes aperture-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes aperture-open {
+  from { opacity: 0; transform: scale(.4) rotate(-90deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes film-scroll {
+  from { background-position-x: 0; }
+  to { background-position-x: -52px; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 4px 20px -4px var(--glow-1); }
+  50% { box-shadow: 0 4px 28px 2px var(--glow-1); }
+}
+@keyframes shine-sweep {
+  from { transform: translateX(-130%) skewX(-18deg); }
+  to { transform: translateX(230%) skewX(-18deg); }
+}
+@keyframes confetti-burst {
+  0% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty) + 170px)) rotate(var(--rot)) scale(.55); }
+}
+@keyframes ring-fill {
+  from { stroke-dashoffset: var(--ring-c); }
+  to { stroke-dashoffset: var(--ring-target); }
+}
+@keyframes mascot-bob {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-5px) rotate(1.5deg); }
+}
+@keyframes mascot-jump {
+  0% { transform: translateY(0) scale(1, 1); }
+  30% { transform: translateY(-22px) scale(.96, 1.06); }
+  55% { transform: translateY(0) scale(1.08, .92); }
+  75% { transform: translateY(-8px) scale(1, 1); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes mascot-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(.08); }
+}
+@keyframes mascot-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-7deg); }
+  75% { transform: rotate(7deg); }
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.anim-mascot-bob { animation: mascot-bob 2.6s ease-in-out infinite; }
+.anim-mascot-jump { animation: mascot-jump .7s cubic-bezier(.34, 1.56, .64, 1); }
+.anim-mascot-blink { animation: mascot-blink 4.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.anim-mascot-wiggle { animation: mascot-wiggle .5s ease-in-out; }
+.anim-ticker { animation: ticker-scroll 32s linear infinite; }
+
+/* staggered entrance — set --d per element (e.g. style={{ "--d": "120ms" }}).
+ * fill is `backwards` (not `both`) so JS-driven transforms (tilt, magnetic)
+ * on the same element keep working after the entrance finishes. */
+.anim-rise {
+  animation: rise .55s cubic-bezier(.22, 1, .36, 1) backwards;
+  animation-delay: var(--d, 0ms);
+}
+/* scene stage: gives the cube view-transition its perspective */
+.scene-stage {
+  perspective: 1400px;
+}
+/* scene-cut view transition — cube-style flip down */
+.anim-scene {
+  animation: scene-in .45s cubic-bezier(.22, 1, .36, 1) both;
+}
+/* modal / panel entrance */
+.anim-pop {
+  animation: pop-in .25s cubic-bezier(.22, 1, .36, 1) both;
+}
+/* lower-third toast entrance — slight overshoot bounce */
+.anim-lower-third {
+  animation: lower-third-in .45s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+/* film reel loader */
+.anim-reel {
+  animation: reel-spin 1.4s linear infinite;
+}
+/* REC on-air dot */
+.anim-rec-dot {
+  animation: rec-pulse 1.6s ease-in-out infinite;
+}
+/* aperture ring around logo — slow spin (visible: the Aperture icon's
+ * blades are asymmetric, unlike a dashed ring) + opening snap on mount */
+.anim-aperture-ring {
+  animation: aperture-spin 16s linear infinite;
+}
+.anim-aperture-open {
+  animation: aperture-open .8s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+/* active nav item glow pulse */
+.anim-glow-pulse {
+  animation: glow-pulse 2.6s ease-in-out infinite;
+}
+/* film strip rails (login screen): scrolling sprocket holes */
+.filmstrip {
+  height: 26px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, .16) 0 12px,
+    transparent 12px 26px
+  );
+  background-size: 52px 100%;
+  animation: film-scroll 1.4s linear infinite;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+.filmstrip-reverse {
+  animation-direction: reverse;
+}
+/* ambient glow drift */
+.anim-drift-a {
+  animation: drift-a 18s ease-in-out infinite alternate;
+}
+.anim-drift-b {
+  animation: drift-b 22s ease-in-out infinite alternate;
+}
+/* cinematic light sweep */
+.anim-sweep-beam {
+  animation: sweep-beam 11s ease-in-out infinite;
+}
+/* toast playout bar */
+.toast-bar {
+  animation: toast-bar 4.2s linear forwards;
+}
+
+/* film reel loader shape */
+.film-reel {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-500);
+  position: relative;
+  background:
+    radial-gradient(circle 5px at 50% 24%, var(--accent-500) 98%, transparent 100%),
+    radial-gradient(circle 5px at 76% 50%, var(--accent-500) 98%, transparent 100%),
+    radial-gradient(circle 5px at 50% 76%, var(--accent-500) 98%, transparent 100%),
+    radial-gradient(circle 5px at 24% 50%, var(--accent-500) 98%, transparent 100%),
+    radial-gradient(circle 4px at 50% 50%, var(--accent-500) 98%, transparent 100%);
+}
+
+/* card hover: lift + glow */
+.card-lift {
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, border-color .35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px -14px var(--glow-1), 0 4px 16px rgba(0, 0, 0, .28);
+  border-color: rgba(255, 255, 255, .16);
+}
+.light .card-lift:hover {
+  box-shadow: 0 18px 42px -14px var(--glow-1), 0 6px 20px rgba(15, 23, 42, .12);
+}
+
+/* 3D tilt card: transform comes from the useTilt hook; this keeps the
+ * return-to-flat smooth when the cursor leaves. */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform .18s ease-out, box-shadow .35s ease, border-color .35s ease;
+  will-change: transform;
+}
+
+/* shine sweep across a button on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent);
+  transform: translateX(-130%) skewX(-18deg);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  animation: shine-sweep .7s ease;
+}
+
+/* confetti piece (task-complete celebration) */
+.confetti-piece {
+  position: absolute;
+  border-radius: 2px;
+  animation: confetti-burst .95s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+/* 3D flip card (task card: notes on the back) */
+.flip-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform .65s cubic-bezier(.22, 1, .36, 1);
+}
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+/* fake-3D bar: front + skewed top cap + side strip */
+.bar3d-top {
+  position: absolute;
+  left: 6px;
+  right: -6px;
+  top: -7px;
+  height: 14px;
+  transform: skewX(-45deg);
+  transform-origin: bottom left;
+  border-radius: 3px 3px 0 0;
+  filter: brightness(1.3);
+}
+.bar3d-side {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 12px;
+  height: 100%;
+  transform: skewY(-45deg);
+  transform-origin: top right;
+  filter: brightness(.65);
+  border-radius: 0 3px 3px 0;
+}
+
+/* parallax layers (StudioHome): --px/--py are -0.5..0.5 from useParallax */
+.parallax-layer {
+  transition: transform .3s ease-out;
+  will-change: transform;
+}
+
+/* camera shutter press */
+.btn-shutter {
+  transition: transform .12s ease, filter .12s ease, opacity .2s ease;
+}
+.btn-shutter:active {
+  transform: scale(.96);
+  filter: brightness(1.22);
+}
+
+/* sidebar playhead indicator */
+.playhead-bar {
+  transition: top .38s cubic-bezier(.22, 1, .36, 1), height .38s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
+}
+
+/* respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise, .anim-scene, .anim-pop, .anim-lower-third, .anim-reel,
+  .anim-rec-dot, .anim-aperture-ring, .anim-aperture-open, .anim-glow-pulse,
+  .anim-drift-a, .anim-drift-b, .anim-mascot-bob, .anim-mascot-jump,
+  .anim-mascot-blink, .anim-mascot-wiggle, .anim-ticker,
+  .anim-sweep-beam, .toast-bar, .filmstrip, .confetti-piece {
+    animation: none !important;
+  }
+  .card-lift:hover { transform: none; }
+  .btn-shine::after { display: none; }
+}
