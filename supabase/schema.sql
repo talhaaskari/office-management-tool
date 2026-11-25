@@ -104,38 +104,11 @@ create policy "staff full access" on suggestions       for all to authenticated 
 create policy "staff full access" on reports           for all to authenticated using (true) with check (true);
 
 -- ─────────────────────────────────────────────────────────────
--- Seed the 8 staff profiles. RUN THIS AFTER creating the 8 users
--- in Dashboard → Authentication → Users → "Add user" (check
--- "Auto Confirm user"). It matches each auth user by email.
+-- Example: seed the first admin profile. Create the user first in
+-- Dashboard → Authentication → Users → "Add user" (check
+-- "Auto Confirm user"), then run this, replacing the values.
+-- Repeat the insert for each team member.
 -- ─────────────────────────────────────────────────────────────
 insert into profiles (id, name, title, role, email)
-select id, 'Talha Askari', 'Administrator', 'admin', email from auth.users where email = 'talha.askari@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Ayesha Khan', 'Project Manager', 'staff', email from auth.users where email = 'ayesha.khan@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Bilal Ahmed', 'Video Editor', 'staff', email from auth.users where email = 'bilal.ahmed@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Danish Ali', 'Developer', 'core', email from auth.users where email = 'danish.ali@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Fatima Noor', 'Graphic Designer', 'staff', email from auth.users where email = 'fatima.noor@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Hamza Sheikh', 'Video Editor', 'staff', email from auth.users where email = 'hamza.sheikh@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Iqra Malik', 'Content Writer', 'staff', email from auth.users where email = 'iqra.malik@peacestaff.internal'
-on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;
-
-insert into profiles (id, name, title, role, email)
-select id, 'Usman Tariq', 'Production Staff', 'staff', email from auth.users where email = 'usman.tariq@peacestaff.internal'
+select id, 'Your Name', 'Administrator', 'admin', email from auth.users where email = 'admin@company.internal'
 on conflict (id) do update set name = excluded.name, title = excluded.title, role = excluded.role;

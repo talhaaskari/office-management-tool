@@ -115,22 +115,22 @@ create policy "approved members read branding" on workspace_settings
   for select to authenticated using (public.has_profile());
 
 -- ═══════════════ PART 2 — ADMIN BOOTSTRAP ═══════════════
--- Run this ONLY after Talha has signed in with Google once (his
+-- Run this ONLY after the admin has signed in with Google once (their
 -- request will be sitting in pending_approvals). Steps:
 --   1. Sign OUT of the old @peacestaff.internal account everywhere.
 --   2. Sign in with Google (you'll see "waiting for approval").
---   3. Replace 'TALHA_GMAIL_HERE' below with that Gmail address.
+--   3. Replace 'YOUR_GMAIL_HERE' below with that Gmail address.
 --   4. Run this whole block. Then refresh the portal — you're Admin.
 -- Safe to run: if the Gmail isn't found in pending_approvals, it
 -- does nothing and reports "no pending request".
 -- ─────────────────────────────────────────────────────────────
 do $$
 declare
-  v_gmail text := 'TALHA_GMAIL_HERE'; -- ←←← apni Gmail yahan likho
+  v_gmail text := 'YOUR_GMAIL_HERE'; -- ←←← apni Gmail yahan likho
   v_new_id uuid;
   v_old_id uuid;
-  v_old_email text := 'talha.askari@peacestaff.internal';
-  v_name text := 'Talha Askari';
+  v_old_email text := 'admin@company.internal';
+  v_name text := 'Your Name';
   v_title text := 'Administrator';
   v_role text := 'admin';
   v_perms jsonb := null;

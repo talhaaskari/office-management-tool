@@ -2,17 +2,18 @@
 -- Fix: nayi profile PEHLE banti hai, phir purani entries us par move hoti hain
 -- (pehle version me order ulta tha — foreign key error aata tha).
 -- Run this ONLY after signing in with Google once at the portal
--- (you will see "Waiting for approval"). Your Gmail is already filled in.
+-- (you will see "Waiting for approval"). Replace YOUR_GMAIL_HERE below
+-- with that Gmail address first.
 -- Supabase Dashboard → SQL Editor → New query → ye poora text paste karo → Run
 -- Phir portal refresh karo — tum Admin ban jao ge, purana data bhi link ho jayega.
 
 do $$
 declare
-  v_gmail text := 'peaceproduction93@gmail.com';
+  v_gmail text := 'YOUR_GMAIL_HERE'; -- ←←← apni Gmail yahan likho
   v_new_id uuid;
   v_old_id uuid;
-  v_old_email text := 'talha.askari@peacestaff.internal';
-  v_name text := 'Talha Askari';
+  v_old_email text := 'admin@company.internal';
+  v_name text := 'Your Name';
   v_title text := 'Administrator';
   v_role text := 'admin';
   v_perms jsonb := null;
