@@ -248,7 +248,7 @@ export function RequestDetailsScreen() {
           )}
           <form onSubmit={submit}>
             <Field label="Full name">
-              <input className={inputCls(dark)} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Ayesha Khan" autoComplete="name" />
+              <input className={inputCls(dark)} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Your Name" autoComplete="name" />
             </Field>
             <Field label="Job title">
               <input className={inputCls(dark)} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Video Editor, Cameraman" autoComplete="organization-title" />
