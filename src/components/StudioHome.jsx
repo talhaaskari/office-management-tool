@@ -8,16 +8,13 @@ import { useApp } from "../store/AppContext.jsx";
 import { useParallax } from "../lib/motion.js";
 import { CountUp, Tilt } from "./ui.jsx";
 import { isOverdue } from "../lib/dates.js";
+import { ROLE_WORLDS as WORLDS, NAV_LABELS } from "../config/brand.js";
 
-/* Role worlds — the same portal, a different studio for each role */
-const WORLDS = {
-  admin: { name: "Director's Console", title: "Director", tagline: "The whole studio, from your chair." },
-  core: { name: "Edit Suite", title: "Editor", tagline: "Where the story comes together." },
-  staff: { name: "Shoot Floor", title: "Crew", tagline: "Today's shots, on your call sheet." },
-};
+/* Role worlds — the same portal, a different studio for each role.
+ * Names/titles/taglines live in src/config/brand.js (ROLE_WORLDS). */
 
 const ALL_ZONES = [
-  { id: "wall", label: "Studio Wall", desc: "The office TV dashboard", icon: MonitorPlay },
+  { id: "wall", label: NAV_LABELS.wall, desc: "The office TV dashboard", icon: MonitorPlay },
   { id: "tasks", label: "Task Board", desc: "Every studio project", icon: ClipboardList },
   { id: "schedule", label: "My Schedule", desc: "Your week, shot by shot", icon: CalendarDays },
   { id: "leave", label: "Leave", desc: "Chhutti requests", icon: Palmtree },

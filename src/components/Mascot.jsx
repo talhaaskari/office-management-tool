@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { X } from "lucide-react";
 import { useApp } from "../store/AppContext.jsx";
 import { isOverdue } from "../lib/dates.js";
+import { MASCOT, NAV_LABELS } from "../config/brand.js";
 
 /* Clappy — the studio's clapperboard buddy. Lives bottom-right, reacts to
  * what happens in the portal: jumps with joy when you finish a task or
@@ -10,7 +11,7 @@ import { isOverdue } from "../lib/dates.js";
 
 const TIPS = [
   "Tip: drag a task card to flip it — notes live on the back.",
-  "Tip: the Studio Wall is made for the office TV — hit Present.",
+  `Tip: the ${NAV_LABELS.wall} is made for the office TV — hit Present.`,
   "Tip: finishing a task before its due date pays +10 bonus XP.",
   "Tip: a daily report is worth +15 XP. Wrap up the day!",
   "Tip: 3 days in a row earns the Hot Streak badge.",
@@ -102,7 +103,7 @@ export default function Mascot() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2 select-none" role="img" aria-label="Clappy, the studio mascot">
+    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2 select-none" role="img" aria-label={`${MASCOT.name}, the studio mascot`}>
       {bubble && (
         <div className="anim-pop relative max-w-[240px] glass rounded-2xl rounded-br-sm px-4 py-3 text-sm font-medium shadow-xl" style={{ background: dark ? "rgba(13,17,26,.95)" : "rgba(255,255,255,.97)" }}>
           <span className={dark ? "text-slate-200" : "text-slate-700"}>{bubble}</span>
@@ -117,9 +118,9 @@ export default function Mascot() {
       )}
       <button
         onClick={onClick}
-        aria-label="Clappy the mascot — click for a tip"
+        aria-label={`${MASCOT.name} the mascot — click for a tip`}
         className="cursor-pointer outline-none"
-        title="Clappy — click me!"
+        title={`${MASCOT.name} — click me!`}
       >
         <div key={burst} className={mood === "happy" || mood === "celebrate" ? "anim-mascot-jump" : mood === "worried" ? "anim-mascot-wiggle" : "anim-mascot-bob"}>
           <svg width="84" height="92" viewBox="0 0 84 92" className="drop-shadow-xl">
@@ -145,7 +146,7 @@ export default function Mascot() {
         </div>
       </button>
       <div className={`text-[10px] font-mono font-bold uppercase tracking-[.2em] ${dark ? "text-slate-500" : "text-slate-400"}`}>
-        Clappy
+        {MASCOT.name}
       </div>
     </div>
   );

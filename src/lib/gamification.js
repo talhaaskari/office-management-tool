@@ -1,16 +1,13 @@
 /* Gamification — XP, levels, badges. Pure functions over the app's data,
- * so the leaderboard, the sidebar XP chip and the level-up check all agree. */
+ * so the leaderboard, the sidebar XP chip and the level-up check all agree.
+ * Level names live in src/config/brand.js (LEVELS) — any business renames
+ * them there and the whole portal follows. */
+
+import { LEVELS } from "../config/brand.js";
 
 export const XP = { TASK_DONE: 20, TASK_EARLY: 10, REPORT: 15 };
 
-export const LEVELS = [
-  { level: 1, name: "Rookie", min: 0 },
-  { level: 2, name: "Crew", min: 100 },
-  { level: 3, name: "Shooter", min: 250 },
-  { level: 4, name: "Director", min: 500 },
-  { level: 5, name: "Star", min: 1000 },
-  { level: 6, name: "Legend", min: 2000 },
-];
+export { LEVELS };
 
 /* levelFor(180) → { level: 2, name: "Crew", min: 100, nextMin: 250, progress: 0.53 } */
 export function levelFor(xp) {
@@ -28,7 +25,7 @@ export function xpTotalFor(xpEvents, userId) {
   return (xpEvents || []).filter((e) => e.userId === userId).reduce((s, e) => s + (e.points || 0), 0);
 }
 
-/* XP earned inside the current calendar month (for Crew of the Month). */
+/* XP earned inside the current calendar month (for the monthly top performer). */
 export function monthXpFor(xpEvents, userId, now = new Date()) {
   const y = now.getFullYear();
   const m = now.getMonth();

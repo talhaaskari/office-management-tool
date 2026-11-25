@@ -2,9 +2,10 @@ import { useMemo } from "react";
 import { Trophy, Target, Crosshair, Zap, FileText, Flame, Sunrise, Crown } from "lucide-react";
 import { useApp } from "../store/AppContext.jsx";
 import { BADGES, userStats } from "../lib/gamification.js";
+import { TOP_PERFORMER_LABEL } from "../config/brand.js";
 import { EmptyState } from "./ui.jsx";
 
-/* Leaderboard — XP, levels, badges, and Crew of the Month. */
+/* Leaderboard — XP, levels, badges, and the monthly top performer. */
 
 const BADGE_ICONS = {
   target: Target,
@@ -123,7 +124,7 @@ export default function Leaderboard() {
               <Crown size={26} />
             </span>
             <div>
-              <div className={`text-xs font-bold uppercase tracking-[.2em] ${dark ? "text-slate-400" : "text-slate-500"}`}>Crew of the Month</div>
+              <div className={`text-xs font-bold uppercase tracking-[.2em] ${dark ? "text-slate-400" : "text-slate-500"}`}>{TOP_PERFORMER_LABEL}</div>
               <div className={`text-xl font-extrabold ${dark ? "text-white" : "text-slate-900"}`}>{crewOfMonth.user.name}</div>
               <div className={`text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>{crewOfMonth.xp} XP earned this month</div>
             </div>

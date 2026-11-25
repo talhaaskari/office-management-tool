@@ -5,8 +5,9 @@ import {
 } from "lucide-react";
 import { useApp } from "../store/AppContext.jsx";
 import { isOverdue, todayISO, formatDate } from "../lib/dates.js";
+import { NAV_LABELS } from "../config/brand.js";
 
-/* Live Studio Wall — the office TV dashboard. Big type, live clock,
+/* Live wall — the office TV dashboard. Big type, live clock,
  * today's shoots, who's on set, who's on leave, next up, and a scrolling
  * announcements ticker. Hit Present for fullscreen. */
 
@@ -74,7 +75,7 @@ export default function StudioWall() {
           <div>
             <div className="flex items-center gap-2">
               <span className="anim-rec-dot w-2.5 h-2.5 rounded-full bg-rose-500 inline-block" />
-              <span className={`text-xs font-bold uppercase tracking-[.25em] ${dark ? "text-slate-400" : "text-slate-500"}`}>Studio Wall · Live</span>
+              <span className={`text-xs font-bold uppercase tracking-[.25em] ${dark ? "text-slate-400" : "text-slate-500"}`}>{NAV_LABELS.wall} · Live</span>
             </div>
             <div className={`font-mono font-extrabold tracking-tight leading-none mt-2 text-5xl sm:text-6xl ${dark ? "text-white" : "text-slate-900"}`}>
               {clock}

@@ -7,6 +7,7 @@ import {
 import { useApp } from "../store/AppContext.jsx";
 import { isOverdue } from "../lib/dates.js";
 import { levelFor, xpTotalFor } from "../lib/gamification.js";
+import { NAV_LABELS } from "../config/brand.js";
 
 /**
  * Sidebar nav. Badges always reflect REAL counts:
@@ -27,8 +28,8 @@ export default function Sidebar({ view, setView, mobileOpen, setMobileOpen }) {
   const myLevel = levelFor(myXp);
 
   const staffItems = [
-    { id: "home", label: "Studio Home", icon: <Clapperboard size={18} /> },
-    { id: "wall", label: "Studio Wall", icon: <MonitorPlay size={18} /> },
+    { id: "home", label: NAV_LABELS.home, icon: <Clapperboard size={18} /> },
+    { id: "wall", label: NAV_LABELS.wall, icon: <MonitorPlay size={18} /> },
     { id: "tasks", label: "Task Board", icon: <ClipboardList size={18} />, badge: myOpenTasks || null },
     { id: "schedule", label: "My Schedule", icon: <CalendarDays size={18} />, badge: overdueMine || null, badgeTone: "rose" },
     { id: "leave", label: "Leave", icon: <Palmtree size={18} />, badge: myPendingLeave || null, badgeTone: "rose" },

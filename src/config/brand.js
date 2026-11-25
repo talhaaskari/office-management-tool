@@ -87,3 +87,41 @@ export const ROLE_BLURBS = {
   core: "Trusted team — manage tasks & announcements, view reports. No staff management.",
   staff: "Restricted — own tasks, schedule, suggestion box, daily report.",
 };
+
+/* ── Business identity: navigation, worlds, levels, awards, mascot ───
+   Everything below is what makes this portal feel like YOUR business.
+   The defaults are Peace's studio flavour — any other business changes
+   ONLY the values here (never the keys) and the whole portal follows:
+   sidebar, home, wall, leaderboard, mascot. The live Peace portal keeps
+   these exact values, so it looks identical. */
+
+/** Main navigation labels */
+export const NAV_LABELS = {
+  home: "Studio Home",
+  wall: "Studio Wall",
+};
+
+/** Per-role home "worlds" — hero name, role title, tagline */
+export const ROLE_WORLDS = {
+  admin: { name: "Director's Console", title: "Director", tagline: "The whole studio, from your chair." },
+  core: { name: "Edit Suite", title: "Editor", tagline: "Where the story comes together." },
+  staff: { name: "Shoot Floor", title: "Crew", tagline: "Today's shots, on your call sheet." },
+};
+
+/** Gamification levels — `name` is the display name, `min` the XP threshold */
+export const LEVELS = [
+  { level: 1, name: "Rookie", min: 0 },
+  { level: 2, name: "Crew", min: 100 },
+  { level: 3, name: "Shooter", min: 250 },
+  { level: 4, name: "Director", min: 500 },
+  { level: 5, name: "Star", min: 1000 },
+  { level: 6, name: "Legend", min: 2000 },
+];
+
+/** Monthly top-performer award label on the leaderboard */
+export const TOP_PERFORMER_LABEL = "Crew of the Month";
+
+/** Mascot — display name shown under the character */
+export const MASCOT = {
+  name: "Clappy",
+};

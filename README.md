@@ -112,14 +112,34 @@ variables in the project settings, and deploy. (Any static host works —
 
 ---
 
-## Make it yours (rebranding)
+## Make it your business
 
-- **Name, tagline, footer credit:** edit `src/config/brand.js`
-  (`BRAND.name`, `BRAND.legalName`, `BRAND.tagline`, `BRAND.footerCredit`).
-- **Logo:** sign in as admin → **Administration → Branding & Theme** → upload
-  your logo. (The default logo is bundled in `src/lib/peaceLogo.js`.)
-- **Colours / theme:** same Branding section — pick an accent and light/dark mode,
-  optionally forced for everyone.
+Everything that makes the portal feel like *your* business lives in **one
+file: `src/config/brand.js`**. Change only the values there (never the keys)
+and the whole portal follows — sidebar, home, wall, leaderboard, mascot.
+No database change is needed.
+
+| What | Where in `brand.js` | Peace default | Generic example |
+|---|---|---|---|
+| Business name, tagline, footer credit | `BRAND` | Peace Staff / Studio Workspace | Office Management Tool / Office Workspace |
+| Logo | Admin → Branding & Theme (upload) | Peace P-mark | Your logo |
+| Role display names | `ROLES` / `ROLE_LABELS` | Administrator / Core Team / Staff | Administrator / Manager / Employee |
+| Role permissions | `PERMISSIONS` | (see file) | Tick what each role may do |
+| Home "worlds" per role | `ROLE_WORLDS` | Director's Console / Edit Suite / Shoot Floor | Manager's Desk / Team Board / My Workspace |
+| Navigation labels | `NAV_LABELS` | Studio Home / Studio Wall | Dashboard / Team Wall |
+| Level names | `LEVELS` | Rookie / Crew / Shooter / Director / Star / Legend | Starter / Member / Pro / Expert / Star / Legend |
+| Monthly award label | `TOP_PERFORMER_LABEL` | Crew of the Month | Star of the Month |
+| Mascot name | `MASCOT` | Clappy | Buddy |
+| Suggestion categories | `SUGGESTION_CATEGORIES` | (see file) | Your own categories |
+
+Notes:
+- **Role labels are display names only.** The role keys (`admin` / `core` /
+  `staff`) stay the same in the database — relabelling "Core Team" to
+  "Manager" changes nothing else. Renaming a key needs a database migration.
+- **XP values** (`+20` task, `+10` early, `+15` report) live in
+  `src/lib/gamification.js` (`XP`).
+- **Leave types** (annual / sick / casual / emergency) live in
+  `src/components/LeavePanel.jsx`.
 
 ---
 

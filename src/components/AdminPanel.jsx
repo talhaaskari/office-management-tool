@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import {
   SUGGESTION_CATEGORIES, ROLES, ROLE_LABELS, ROLE_BLURBS,
-  PERMISSION_LABELS, PERMISSIONS, ACCENTS,
+  PERMISSION_LABELS, PERMISSIONS, ACCENTS, NAV_LABELS,
 } from "../config/brand.js";
 import { useApp } from "../store/AppContext.jsx";
 import { Modal, Field, inputCls, PrimaryButton, GhostButton, EmptyState } from "./ui.jsx";
@@ -310,7 +310,7 @@ function LeaveAdmin() {
   };
 
   return (
-    <Section title="Leave Requests" sub={`${pending.length} waiting · approved leave shows on the Studio Wall`}>
+    <Section title="Leave Requests" sub={`${pending.length} waiting · approved leave shows on the ${NAV_LABELS.wall}`}>
       {pending.length === 0 && decided.length === 0 ? (
         <EmptyState icon={<Palmtree size={24} />} title="No leave requests yet" body="They will appear here when staff file them." />
       ) : (

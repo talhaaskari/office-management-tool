@@ -3,6 +3,7 @@ import { Palmtree, X } from "lucide-react";
 import { useApp } from "../store/AppContext.jsx";
 import { Field, inputCls, PrimaryButton, GhostButton, EmptyState } from "./ui.jsx";
 import { formatDate } from "../lib/dates.js";
+import { NAV_LABELS } from "../config/brand.js";
 
 /* My Leave — file a chhutti request, track its status, cancel while pending. */
 
@@ -66,7 +67,7 @@ export default function LeavePanel() {
         <h2 className={`text-xl font-extrabold ${dark ? "text-white" : "text-slate-900"}`}>My Leave</h2>
       </div>
       <p className={`text-sm mb-5 ${dark ? "text-slate-400" : "text-slate-500"}`}>
-        File a chhutti request — the admin approves it, and approved leave shows on the Studio Wall.
+        File a chhutti request — the admin approves it, and approved leave shows on the {NAV_LABELS.wall}.
       </p>
 
       <form onSubmit={submit} className="glass rounded-3xl p-6 mb-5">
